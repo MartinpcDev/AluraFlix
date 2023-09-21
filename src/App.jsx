@@ -37,7 +37,7 @@ export const App = () => {
 		},
 		{
 			name: 'ver_video',
-			path: '/video/:id',
+			path: '/videos/:id',
 			element: <VerVideo />
 		},
 		{
