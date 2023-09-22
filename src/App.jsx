@@ -1,11 +1,14 @@
+/* React Router */
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import { NavBar } from './components/NavBar';
+/* Pages */
 import { NuevoVideo } from './pages/NuevoVideo';
 import { NuevaCategoria } from './pages/NuevaCategoria';
 import { AllVideos } from './pages/AllVideos';
 import { AllCategorias } from './pages/AllCategorias';
 import { VerVideo } from './pages/VerVideo';
 import { Home } from './pages/Home';
+/* Componentes */
+import { NavBar } from './components/NavBar';
 import { Footer } from './components/Footer';
 
 export const App = () => {

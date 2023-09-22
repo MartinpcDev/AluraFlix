@@ -1,5 +1,8 @@
+/* Hooks */
 import { useEffect, useState } from 'react';
-import { getData } from '../api/api';
+/* Model */
+import { getData } from '../model/videoModel';
+/* Componentes */
 import { CategoriaSection } from './CategoriaSection';
 
 export const MainSection = ({ urlVideos, urlCategorias }) => {

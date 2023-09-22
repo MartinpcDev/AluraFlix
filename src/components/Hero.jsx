@@ -1,5 +1,7 @@
+/* React Router */
 import { NavLink } from 'react-router-dom';
-import Banner from '../assets/banner.png';
+/* Imagenes */
+import Banner from '../assets/banner.webp';
 
 export const Hero = () => {
 	return (

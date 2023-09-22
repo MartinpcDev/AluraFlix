@@ -1,7 +1,11 @@
+/* Hooks */
 import { useState } from 'react';
-import { AiFillCloseCircle, AiOutlineMenu } from 'react-icons/ai';
-import logo from '../assets/AluraFlix.png';
+/* React Router */
 import { NavLink } from 'react-router-dom';
+/* Imagenes */
+import logo from '../assets/AluraFlix.webp';
+/* Icons */
+import { AiFillCloseCircle, AiOutlineMenu } from 'react-icons/ai';
 
 export const NavBar = () => {
 	const [open, setOpen] = useState(false);

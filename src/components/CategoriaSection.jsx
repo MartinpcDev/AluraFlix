@@ -1,23 +1,24 @@
+/* Slider */
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-
 import 'swiper/css';
 import 'swiper/css/autoplay';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+/* Componentes */
 import { VideoCard } from './VideoCard';
 
 export const CategoriaSection = ({ videos, categoria }) => {
 	//TODO Terminar el Carrousel con los videos
 	return (
-		<div className='w-full mb-4' id={categoria.categoria}>
+		<div className='w-full mb-4' id={categoria.id}>
 			<div
 				className={`flex justify-between gap-1 content-center border-b-2 border-solid`}
 				style={{ borderColor: `${categoria.color}` }}>
 				<h2
 					className={`font-700 w-max p-4 text-ellipsis whitespace-nowrap`}
 					style={{ backgroundColor: `${categoria.color}` }}>
-					{categoria.categoria}
+					{categoria.nombre}
 				</h2>
 			</div>
 			<div className='pt-4'>
@@ -57,7 +58,7 @@ export const CategoriaSection = ({ videos, categoria }) => {
 						videos.length === 0 ? (
 							<p className='text-textoPrincipal text-2xl'>No hay videos</p>
 						) : (
-							categoria.categoria === video.categoria && (
+							categoria.nombre === video.categoria && (
 								<SwiperSlide key={video.id}>
 									<VideoCard video={video} />
 								</SwiperSlide>

@@ -1,4 +1,4 @@
-import { Footer } from '../components/Footer';
+/* Componentes */
 import { Hero } from '../components/Hero';
 import { MainSection } from '../components/MainSection';
 

@@ -1,9 +1,14 @@
+/* Hooks */
 import { useEffect, useState } from 'react';
+/* React Router */
 import { useResolvedPath } from 'react-router-dom';
-import { getData } from '../api/api';
-import { Swiper, SwiperSlide } from 'swiper/react';
+/* Componentes */
 import { VideoCard } from '../components/VideoCard';
+/* Slider JS */
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+/* Model */
+import { getData } from '../model/videoModel';
 
 export const VerVideo = () => {
 	const [video, setVideo] = useState([]);

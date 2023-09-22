@@ -1,5 +1,7 @@
-import Logo from '../assets/AluraFlix.png';
+/* Icons */
 import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai';
+/* Imagenes */
+import Logo from '../assets/AluraFlix.webp';
 
 export const Footer = () => {
 	return (
