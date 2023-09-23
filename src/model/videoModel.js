@@ -6,5 +6,17 @@ export const api = axios.create({
 
 export const getData = async (url, setData) => {
 	const response = await api.get(url);
-	setData(response.data);
+	await setData(response.data);
+};
+
+export const editData = async (url, dataform) => {
+	const response = await api.put(url, dataform);
+};
+
+export const postData = async (url, dataform) => {
+	const response = await api.post(url, dataform);
+};
+
+export const deleteData = async url => {
+	const response = await api.delete(url);
 };

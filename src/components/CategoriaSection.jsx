@@ -9,7 +9,6 @@ import 'swiper/css/navigation';
 import { VideoCard } from './VideoCard';
 
 export const CategoriaSection = ({ videos, categoria }) => {
-	//TODO Terminar el Carrousel con los videos
 	return (
 		<div className='w-full mb-4' id={categoria.id}>
 			<div
@@ -54,15 +53,16 @@ export const CategoriaSection = ({ videos, categoria }) => {
 					navigation={true}
 					loop={true}
 					modules={[Autoplay, Pagination, Navigation]}>
-					{videos.map(video =>
-						videos.length === 0 ? (
-							<p className='text-textoPrincipal text-2xl'>No hay videos</p>
-						) : (
-							categoria.nombre === video.categoria && (
-								<SwiperSlide key={video.id}>
-									<VideoCard video={video} />
-								</SwiperSlide>
-							)
+					{videos.length < 0 ? (
+						<p className='text-textoPrincipal text-2xl'>No hay videos</p>
+					) : (
+						videos.map(
+							video =>
+								categoria.nombre === video.categoria && (
+									<SwiperSlide key={video.id}>
+										<VideoCard video={video} opciones={false} />
+									</SwiperSlide>
+								)
 						)
 					)}
 				</Swiper>

@@ -1,33 +1,49 @@
 /* Hooks */
 import { useEffect, useState } from 'react';
-/* React router */
-import { useNavigate } from 'react-router-dom';
+/* React Router */
+import { useNavigate, useParams } from 'react-router-dom';
 /* Model */
-import { getData, postData } from '../model/videoModel';
+import { editData, getData } from '../model/videoModel';
 
-export const NuevoVideo = () => {
+export const EditVideo = () => {
 	const navigate = useNavigate();
+	const { id } = useParams();
 	const [titulo, setTitulo] = useState('');
 	const [descripcion, setDescripcion] = useState('');
 	const [imagen, setImagen] = useState('');
-	const [urlvideo, setUrlvideo] = useState('');
-	const [categoriaVideo, setCategoriaVideo] = useState('');
+	const [urlVideo, setUrlVideo] = useState('');
+	const [valorSelect, setValorSelect] = useState('');
+	const [categoriaVideo, setCategoriaVideo] = useState([]);
 	const [categorias, setCategorias] = useState([]);
-	let url = '/categorias';
-	useEffect(() => {
-		getData(url, setCategorias);
-	}, [url]);
+	let urlCategorias = '/categorias';
+	let urlVideoID = `/videos/${id}`;
 
+	useEffect(() => {
+		getData(urlCategorias, setCategorias);
+	}, [urlCategorias]);
+
+	useEffect(() => {
+		getData(urlVideoID, setCategoriaVideo);
+	}, [urlVideoID]);
+
+	useEffect(() => {
+		setTitulo(categoriaVideo.titulo);
+		setDescripcion(categoriaVideo.descripcion);
+		setImagen(categoriaVideo.imagen);
+		setUrlVideo(categoriaVideo.url);
+		setValorSelect(categoriaVideo.categoria);
+	}, [categoriaVideo]);
 	const handleSubmit = e => {
 		e.preventDefault();
 		let data = {
 			titulo,
 			descripcion,
 			imagen,
-			url: urlvideo,
-			categoria: categoriaVideo
+			url: urlVideo,
+			categoria: valorSelect
 		};
-		postData('/videos', data).then(response => navigate('/'));
+
+		editData(urlVideoID, data).then(response => navigate('/allvideos'));
 	};
 
 	return (
@@ -38,19 +54,19 @@ export const NuevoVideo = () => {
 				<div className='mb-4'>
 					<label
 						className='block text-gray-700 text-sm font-bold mb-2'
-						htmlFor='nombre'>
+						htmlFor='titulo'>
 						Titulo
 					</label>
 					<input
 						required={true}
 						className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-						id='nombre'
+						id='titulo'
 						value={titulo}
 						onChange={e => {
 							setTitulo(e.target.value);
 						}}
 						type='text'
-						placeholder='Nombre'
+						placeholder='Titulo'
 					/>
 				</div>
 				<div className='mb-4'>
@@ -86,7 +102,7 @@ export const NuevoVideo = () => {
 						onChange={e => {
 							setImagen(e.target.value);
 						}}
-						placeholder='url de la imagen'
+						placeholder='imagen de la imagen'
 					/>
 				</div>
 				<div className='mb-4'>
@@ -99,12 +115,12 @@ export const NuevoVideo = () => {
 						required={true}
 						className='h-8 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
 						id='color'
-						type='url'
-						value={urlvideo}
+						type='imagen'
+						value={urlVideo}
 						onChange={e => {
-							setUrlvideo(e.target.value);
+							setUrlVideo(e.target.value);
 						}}
-						placeholder='direccion url del video'
+						placeholder='direccion imagen del video'
 					/>
 				</div>
 				<div className='w-full pt-4 inline-block relative'>
@@ -113,8 +129,8 @@ export const NuevoVideo = () => {
 					</label>
 					<select
 						className='block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline'
-						value={categoriaVideo}
-						onChange={e => setCategoriaVideo(e.target.value)}>
+						value={valorSelect}
+						onChange={e => setValorSelect(e.target.value)}>
 						<option value='' defaultValue='' disabled>
 							seleccione una opcion
 						</option>
@@ -135,7 +151,7 @@ export const NuevoVideo = () => {
 				</div>
 				<div className='flex flex-col justify-center items-center p-8'>
 					<button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>
-						Crear Video
+						Editar Video
 					</button>
 				</div>
 			</form>

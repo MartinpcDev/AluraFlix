@@ -25,7 +25,7 @@ export const VerVideo = () => {
 	});
 
 	return (
-		<section className='w-full h-auto bg-fondoPrincipal font-code p-4 text-textoPrincipal flex flex-col justify-center content-center'>
+		<section className='w-full h-screen bg-fondoPrincipal font-code p-4 text-textoPrincipal flex flex-col justify-center content-center'>
 			<div className='m-auto w-full h-[60%] flex flex-row justify-center items-center overflow-auto'>
 				<div className='w-[70%] pr-4'>
 					<h1 className='h-[10%] font-700 text-2xl pb-4'>{video.titulo}</h1>

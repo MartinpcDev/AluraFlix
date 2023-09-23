@@ -3,16 +3,23 @@ import { useEffect, useState } from 'react';
 /* React Router */
 import { Link } from 'react-router-dom';
 /* Model */
-import { getData } from '../model/videoModel';
+import { deleteData, getData } from '../model/videoModel';
 /* Icons */
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
 
 export const AllCategorias = () => {
-	//TODO hacer la vista editCategoria y la opcion eliminar categoria
 	const [categorias, setCategorias] = useState([]);
+	let url = '/categorias';
 	useEffect(() => {
-		getData('/categorias', setCategorias);
-	}, []);
+		getData(url, setCategorias);
+	}, [url]);
+
+	const handleDelete = id => {
+		console.log(`${url}/${id}`);
+		deleteData(`${url}/${id}`).then(response => {
+			location.reload();
+		});
+	};
 
 	const headers = [
 		{
@@ -63,12 +70,16 @@ export const AllCategorias = () => {
 									className='px-6 py-4'
 									style={{ backgroundColor: `${categoria.color}` }}></td>
 								<td className='px-6 py-4 text-right'>
-									<Link className='text-2xl font-700 text-textoSecundario hover:text-yellow-500'>
+									<Link
+										to={`/editcategoria/${categoria.id}`}
+										className='text-2xl font-700 text-textoSecundario hover:text-yellow-500'>
 										<AiFillEdit />
 									</Link>
 								</td>
 								<td className='px-6 py-4 text-right'>
-									<button className='text-2xl font-700 text-textoSecundario hover:text-red-600'>
+									<button
+										onClick={() => handleDelete(categoria.id)}
+										className='text-2xl font-700 text-textoSecundario hover:text-red-600'>
 										<AiFillDelete />
 									</button>
 								</td>

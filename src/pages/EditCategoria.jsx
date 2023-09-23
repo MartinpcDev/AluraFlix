@@ -1,15 +1,28 @@
 /* Hooks */
-import { useState } from 'react';
-/* React Roter */
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+/* React Router */
+import { useNavigate, useParams } from 'react-router-dom';
 /* Model */
-import { postData } from '../model/videoModel';
+import { editData, getData } from '../model/videoModel';
 
-export const NuevaCategoria = () => {
+export const EditCategoria = () => {
 	const navigate = useNavigate();
-	const [color, setColor] = useState('#000000');
+	const { id } = useParams();
 	const [nombre, setNombre] = useState('');
 	const [descripcion, setDescripcion] = useState('');
+	const [color, setColor] = useState('#000000');
+	const [categoria, setCategoria] = useState({});
+	let url = `/categorias/${id}`;
+	useEffect(() => {
+		getData(url, setCategoria);
+	}, [url]);
+
+	useEffect(() => {
+		setNombre(categoria.nombre);
+		setDescripcion(categoria.descripcion);
+		setColor(categoria.color);
+	}, [categoria]);
+
 	const handleSubmit = e => {
 		e.preventDefault();
 		let data = {
@@ -17,7 +30,7 @@ export const NuevaCategoria = () => {
 			descripcion,
 			color
 		};
-		postData('/categorias', data).then(response => navigate('/allcategorias'));
+		editData(url, data).then(response => navigate('/allcategorias'));
 	};
 
 	return (
@@ -62,15 +75,12 @@ export const NuevaCategoria = () => {
 					/>
 				</div>
 				<div className='mb-4'>
-					<label
-						className='block text-gray-700 text-sm font-bold mb-2'
-						htmlFor='color'>
+					<label className='block text-gray-700 text-sm font-bold mb-2'>
 						Color
 					</label>
 					<input
 						required={true}
 						className='h-8 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-						id='color'
 						type='color'
 						value={color}
 						onChange={e => {
@@ -79,8 +89,10 @@ export const NuevaCategoria = () => {
 					/>
 				</div>
 				<div className='flex flex-col justify-center items-center p-8'>
-					<button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>
-						Crear Categoria
+					<button
+						className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+						type='submit'>
+						Editar Categoria
 					</button>
 				</div>
 			</form>

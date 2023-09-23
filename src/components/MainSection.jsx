@@ -16,9 +16,6 @@ export const MainSection = ({ urlVideos, urlCategorias }) => {
 		getData(urlCategorias, setCategorias);
 	}, [urlCategorias]);
 
-	// console.log(videos);
-	// console.log(categorias);
-
 	return (
 		<section className='bg-fondoPrincipal font-code p-4'>
 			{categorias.map(categoria => (

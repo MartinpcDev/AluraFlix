@@ -2,7 +2,9 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 /* Pages */
 import { NuevoVideo } from './pages/NuevoVideo';
+import { EditVideo } from './pages/EditVideo';
 import { NuevaCategoria } from './pages/NuevaCategoria';
+import { EditCategoria } from './pages/EditCategoria';
 import { AllVideos } from './pages/AllVideos';
 import { AllCategorias } from './pages/AllCategorias';
 import { VerVideo } from './pages/VerVideo';
@@ -37,6 +39,16 @@ export const App = () => {
 			name: 'all_categorias',
 			path: '/allcategorias',
 			element: <AllCategorias />
+		},
+		{
+			name: 'edit_video',
+			path: '/editvideo/:id',
+			element: <EditVideo />
+		},
+		{
+			name: 'edit_categoria',
+			path: '/editcategoria/:id',
+			element: <EditCategoria />
 		},
 		{
 			name: 'ver_video',
