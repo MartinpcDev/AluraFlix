@@ -1,13 +1,14 @@
 /* Hooks */
 import { useEffect, useState } from 'react';
 /* React Router */
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 /* Model */
 import { deleteData, getData } from '../model/videoModel';
 /* Icons */
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
 
 export const AllCategorias = () => {
+	const navigate = useNavigate();
 	const [categorias, setCategorias] = useState([]);
 	let url = '/categorias';
 	useEffect(() => {
@@ -15,10 +16,7 @@ export const AllCategorias = () => {
 	}, [url]);
 
 	const handleDelete = id => {
-		console.log(`${url}/${id}`);
-		deleteData(`${url}/${id}`).then(response => {
-			location.reload();
-		});
+		deleteData(`${url}/${id}`).then(response => navigate('/'));
 	};
 
 	const headers = [

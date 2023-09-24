@@ -1,5 +1,5 @@
 /* React Router */
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 /* Icons */
 import { AiFillEdit, AiFillDelete } from 'react-icons/ai';
 /* Model */
@@ -7,12 +7,9 @@ import { deleteData } from '../model/videoModel';
 
 export const VideoCard = ({ video, opciones }) => {
 	let url = '/videos';
-
+	const navigate = useNavigate();
 	const handleDelete = id => {
-		console.log(`${url}/${id}`);
-		deleteData(`${url}/${id}`).then(response => {
-			location.reload();
-		});
+		deleteData(`${url}/${id}`).then(response => navigate('/'));
 	};
 
 	return (
